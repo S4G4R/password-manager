@@ -1,29 +1,35 @@
 package com.sagar.passwordmanager;
 
+import com.sagar.passwordmanager.management.SceneManagement;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
 public class PasswordManager extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/scene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/splashscreen.fxml"));
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
-        stage.setTitle("JavaFX and Gradle");
-        stage.setScene(scene);
+        setProperties(stage, scene);
+
+        SceneManagement sm = new SceneManagement(stage);
         stage.show();
     }
 
+    public void setProperties(Stage stage, Scene scene) {
+        stage.setScene(scene);
+        stage.setTitle("Password Manager");
+        stage.resizableProperty().setValue(false);
+    }
+
     public static void main(String[] args) {
-        Application.launch(PasswordManager.class, args);
+        launch(args);
     }
 
 }
