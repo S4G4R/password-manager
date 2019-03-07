@@ -1,28 +1,45 @@
 package com.sagar.passwordmanager.controllers;
 
+import com.sagar.passwordmanager.management.DialogManagement;
+
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
+import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class SplashController {
+public class SplashController implements Initializable {
 
     @FXML
-    private Button SetMaster;
+    private Button SetMasterPassword;
     @FXML
-    private Button StartButton;
+    private Button LoginButton;
 
-    public SplashController() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
+        //SetMasterPassword.setDisable(true);
+        LoginButton.setDisable(true);
     }
 
     @FXML
-    private void showUI(ActionEvent event) throws Exception {
-        SceneSwitcher.getInstance().changeScene("/views/mainscreen.fxml");
+    private void enterMasterPassword(ActionEvent event) throws Exception {
+        // TODO: VALIDATION
+
+        SceneSwitcher.goToMain();
     }
 
     @FXML
     private void setMasterPassword(ActionEvent event) {
-        System.out.println("Set password UI will be shown");
+        // TODO: VALIDATION
+        Dialog dialog = DialogManagement.createMasterPasswordDialog();
+
+        dialog.showAndWait();
+
+        System.out.println(dialog.getResult());
     }
+
 
 }
