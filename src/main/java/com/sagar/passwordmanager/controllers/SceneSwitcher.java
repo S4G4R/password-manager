@@ -14,4 +14,8 @@ public class SceneSwitcher {
         return instance;
     }
 
+    public static void goToMain() throws Exception {
+        getInstance().changeScene("/views/mainscreen.fxml");
+    }
+
 }
