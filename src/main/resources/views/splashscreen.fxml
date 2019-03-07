@@ -8,8 +8,8 @@
 
 <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sagar.passwordmanager.controllers.SplashController">
    <children>
-      <Button fx:id="StartButton" mnemonicParsing="false" onAction="#showUI" text="Enter Master Password" translateX="-100.0" translateY="-125.0" StackPane.alignment="BOTTOM_RIGHT" />
-      <Button fx:id="SetMaster" mnemonicParsing="false" onAction="#setMasterPassword" text="Set Master Password" translateX="100.0" translateY="-125.0" StackPane.alignment="BOTTOM_LEFT" />
+      <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#enterMasterPassword" text="Enter Master Password" translateX="-100.0" translateY="-125.0" StackPane.alignment="BOTTOM_RIGHT" />
+      <Button fx:id="SetMasterPassword" mnemonicParsing="false" onAction="#setMasterPassword" text="Set Master Password" translateX="100.0" translateY="-125.0" StackPane.alignment="BOTTOM_LEFT" />
       <Label text="Welcome To An Open Source Password Manager" translateY="-125.0">
          <font>
             <Font size="24.0" />
