@@ -2,13 +2,16 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sagar.passwordmanager.controllers.SplashController">
    <children>
-      <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#enterMasterPassword" text="Enter Master Password" translateX="-100.0" translateY="-125.0" StackPane.alignment="BOTTOM_RIGHT" />
+      <Button fx:id="EnterMasterPassword" mnemonicParsing="false" onAction="#enterMasterPassword" text="Enter Master Password" translateX="-100.0" translateY="-125.0" StackPane.alignment="BOTTOM_RIGHT" />
       <Button fx:id="SetMasterPassword" mnemonicParsing="false" onAction="#setMasterPassword" text="Set Master Password" translateX="100.0" translateY="-125.0" StackPane.alignment="BOTTOM_LEFT" />
       <Label text="Welcome To An Open Source Password Manager" translateY="-125.0">
          <font>
@@ -16,5 +19,23 @@
          </font>
       </Label>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="If you have not set a master password yet, please do so first. Then you may begin using the program." textAlignment="CENTER" translateY="-15.0" wrappingWidth="388.673828125" StackPane.alignment="CENTER" />
+      <SplitPane fx:id="SetPasswordDialog" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="238.0" prefWidth="552.0" StackPane.alignment="TOP_CENTER">
+         <items>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="239.0" prefWidth="551.0">
+               <children>
+                  <Text layoutX="210.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set Master Password" textOrigin="CENTER" wrappingWidth="131.0" />
+                  <Label layoutX="24.0" layoutY="97.0" text="Enter Password" />
+                  <Label layoutX="24.0" layoutY="151.0" text="Confirm Password" />
+                  <Button defaultButton="true" layoutX="447.0" layoutY="195.0" mnemonicParsing="false" text="Submit" />
+                  <PasswordField layoutX="174.0" layoutY="92.0" prefHeight="27.0" prefWidth="332.0">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </PasswordField>
+                  <PasswordField layoutX="174.0" layoutY="146.0" prefHeight="27.0" prefWidth="332.0" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
    </children>
 </StackPane>
