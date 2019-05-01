@@ -1,5 +1,6 @@
 package com.sagar.passwordmanager.controllers;
 
+import com.sagar.passwordmanager.management.AnimationManagement;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -9,53 +10,42 @@ import javafx.scene.control.SplitPane;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class SplashController implements Initializable {
 
     @FXML private SplitPane SetPasswordDialog;
+    @FXML private SplitPane EnterPasswordDialog;
 
     @FXML private Button SetMasterPassword;
     @FXML private Button EnterMasterPassword;
 
-    private TranslateTransition transIn;
-    private TranslateTransition transOut;
+    private HashMap<SplitPane, AnimationManagement> animators;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         //SetMasterPassword.setDisable(true);
-        EnterMasterPassword.setDisable(true);
+        //EnterMasterPassword.setDisable(true);
 
-        // Set up sliding animation
-        setUpAnimation();
-    }
-
-    private void setUpAnimation() {
-        this.transIn = new TranslateTransition(Duration.millis(250), SetPasswordDialog);
-        transIn.setToY(0);
-        this.transOut = new TranslateTransition(Duration.millis(250), SetPasswordDialog);
-
-        // Moving dialog up and away from main scene
-        SetPasswordDialog.translateYProperty().setValue(-(SetPasswordDialog.getPrefHeight()));
+        animators = new HashMap<>();
+        animators.put(SetPasswordDialog, new AnimationManagement(SetPasswordDialog));
+        animators.put(EnterPasswordDialog, new AnimationManagement(EnterPasswordDialog));
     }
 
     @FXML
     private void enterMasterPassword() throws Exception {
+        animators.get(EnterPasswordDialog).animate();
+
         // TODO: VALIDATION
 
-        SceneSwitcher.goToMain();
+        //SceneSwitcher.goToMain();
     }
 
     @FXML
     private void setMasterPassword() {
-
-        if (SetPasswordDialog.getTranslateY() != 0) {
-            transIn.play();
-        } else {
-            transOut.setToY(-(SetPasswordDialog.getPrefHeight()));
-            transOut.play();
-        }
+        animators.get(SetPasswordDialog).animate();
 
         // TODO: VALIDATION
 
