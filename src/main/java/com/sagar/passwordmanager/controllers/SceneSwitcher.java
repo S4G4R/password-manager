@@ -10,7 +10,7 @@ public class SceneSwitcher {
         this.instance = instance;
     }
 
-    public static SceneManagement getInstance() {
+    private static SceneManagement getInstance() {
         return instance;
     }
 
