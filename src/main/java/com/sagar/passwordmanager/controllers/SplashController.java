@@ -1,13 +1,10 @@
 package com.sagar.passwordmanager.controllers;
 
 import com.sagar.passwordmanager.management.AnimationManagement;
-import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.SplitPane;
-import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -36,6 +33,7 @@ public class SplashController implements Initializable {
 
     @FXML
     private void enterMasterPassword() throws Exception {
+        minimizeExpandedPanes();
         animators.get(EnterPasswordDialog).animate();
 
         // TODO: VALIDATION
@@ -45,10 +43,16 @@ public class SplashController implements Initializable {
 
     @FXML
     private void setMasterPassword() {
+        minimizeExpandedPanes();
         animators.get(SetPasswordDialog).animate();
 
         // TODO: VALIDATION
+    }
 
+    private void minimizeExpandedPanes() {
+        for (AnimationManagement pane : animators.values()) {
+            if (!pane.isExpanded()) pane.animate();
+        }
     }
 
 

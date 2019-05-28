@@ -41,4 +41,8 @@ public class AnimationManagement {
         }
     }
 
+    public boolean isExpanded() {
+        return this.dialog.getTranslateY() != 0;
+    }
+
 }
