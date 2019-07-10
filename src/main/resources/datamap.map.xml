@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/9/modelMap"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://cayenne.apache.org/schema/9/modelMap https://cayenne.apache.org/schema/9/modelMap.xsd"
+	 project-version="9">
+	<property name="defaultPackage" value="com.sagar.passwordmanager.persistent"/>
+	<db-entity name="ACCOUNT">
+		<db-attribute name="EMAIL" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="PASSWORD" type="VARCHAR" isMandatory="true" length="80"/>
+		<db-attribute name="PROVIDER_ID" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="PROVIDER">
+		<db-attribute name="ID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="20"/>
+		<db-attribute name="USER_ID" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="USER">
+		<db-attribute name="MASTER_PASSWORD" type="VARCHAR" isMandatory="true" length="200"/>
+		<db-attribute name="NAME" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="UID" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<obj-entity name="Account" className="com.sagar.passwordmanager.persistent.Account" dbEntityName="ACCOUNT">
+		<obj-attribute name="email" type="java.lang.String" db-attribute-path="EMAIL"/>
+		<obj-attribute name="password" type="java.lang.String" db-attribute-path="PASSWORD"/>
+	</obj-entity>
+	<obj-entity name="Provider" className="com.sagar.passwordmanager.persistent.Provider" dbEntityName="PROVIDER">
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
+	</obj-entity>
+	<obj-entity name="User" className="com.sagar.passwordmanager.persistent.User" dbEntityName="USER">
+		<obj-attribute name="masterPassword" type="java.lang.String" db-attribute-path="MASTER_PASSWORD"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="NAME"/>
+	</obj-entity>
+	<db-relationship name="provider" source="ACCOUNT" target="PROVIDER" toMany="false">
+		<db-attribute-pair source="PROVIDER_ID" target="ID"/>
+	</db-relationship>
+	<db-relationship name="accounts" source="PROVIDER" target="ACCOUNT" toMany="true">
+		<db-attribute-pair source="ID" target="PROVIDER_ID"/>
+	</db-relationship>
+	<db-relationship name="user" source="PROVIDER" target="USER" toMany="false">
+		<db-attribute-pair source="USER_ID" target="UID"/>
+	</db-relationship>
+	<db-relationship name="providers" source="USER" target="PROVIDER" toMany="true">
+		<db-attribute-pair source="UID" target="USER_ID"/>
+	</db-relationship>
+	<obj-relationship name="provider" source="Account" target="Provider" deleteRule="Nullify" db-relationship-path="provider"/>
+	<obj-relationship name="accounts" source="Provider" target="Account" deleteRule="Deny" db-relationship-path="accounts"/>
+	<obj-relationship name="user" source="Provider" target="User" deleteRule="Nullify" db-relationship-path="user"/>
+	<obj-relationship name="providers" source="User" target="Provider" deleteRule="Deny" db-relationship-path="providers"/>
+</data-map>

@@ -8,6 +8,9 @@ repositories {
 }
 
 dependencies {
+    compile group: 'com.h2database', name: 'h2', version: '1.4.199'
+    compile group: 'org.apache.cayenne', name: 'cayenne-server', version: '4.0.1'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 }
 
 javafx {

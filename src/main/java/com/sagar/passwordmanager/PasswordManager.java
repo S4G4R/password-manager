@@ -3,6 +3,10 @@ package com.sagar.passwordmanager;
 import com.sagar.passwordmanager.controllers.SceneSwitcher;
 import com.sagar.passwordmanager.management.SceneManagement;
 
+import com.sagar.passwordmanager.persistent.User;
+import org.apache.cayenne.ObjectContext;
+import org.apache.cayenne.configuration.server.ServerRuntime;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +26,8 @@ public class PasswordManager extends Application {
         setProperties(stage, scene);
         setUpScreenSwitching(stage);
 
+        setUpDatabase();
+
         stage.show();
     }
 
@@ -32,7 +38,16 @@ public class PasswordManager extends Application {
     }
 
     private void setUpScreenSwitching(Stage stage) {
-        SceneSwitcher sw = new SceneSwitcher(new SceneManagement(stage));
+        new SceneSwitcher(new SceneManagement(stage));
+    }
+
+    private void setUpDatabase() {
+        ServerRuntime cayenneRuntime = ServerRuntime.builder()
+                .addConfig("cayenne-project.xml")
+                .build();
+        ObjectContext context = cayenneRuntime.newContext();
+
+        context.commitChanges();
     }
 
     public static void main(String[] args) {
