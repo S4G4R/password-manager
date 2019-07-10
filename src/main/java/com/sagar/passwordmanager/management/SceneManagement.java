@@ -5,6 +5,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * This class sets the main stage and provides some functionality to manipulate its current scene.
+ * */
 public class SceneManagement {
 
     private final Stage main;

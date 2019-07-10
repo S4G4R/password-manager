@@ -10,14 +10,21 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+/**
+ * This class controls the elements/events from the splash screen.
+ * */
+
 public class SplashController implements Initializable {
 
+    // Pane dialogs
     @FXML private SplitPane SetPasswordDialog;
     @FXML private SplitPane EnterPasswordDialog;
 
+    // Buttons of each dialog
     @FXML private Button SetMasterPassword;
     @FXML private Button EnterMasterPassword;
 
+    // Mapping that stores a pane with its corresponding animation settings
     private HashMap<SplitPane, AnimationManagement> animators;
 
     @Override
@@ -26,6 +33,7 @@ public class SplashController implements Initializable {
         //SetMasterPassword.setDisable(true);
         //EnterMasterPassword.setDisable(true);
 
+        // Populate mapping
         animators = new HashMap<>();
         animators.put(SetPasswordDialog, new AnimationManagement(SetPasswordDialog));
         animators.put(EnterPasswordDialog, new AnimationManagement(EnterPasswordDialog));

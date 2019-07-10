@@ -2,6 +2,10 @@ package com.sagar.passwordmanager.controllers;
 
 import com.sagar.passwordmanager.management.SceneManagement;
 
+/**
+ * This class fetches the main stage and handles scene transitions.
+ * */
+
 public class SceneSwitcher {
 
     private static SceneManagement instance;

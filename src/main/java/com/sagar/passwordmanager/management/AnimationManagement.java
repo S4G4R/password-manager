@@ -23,6 +23,7 @@ public class AnimationManagement {
         setUpAnimation();
     }
 
+    // Main animation logic
     private void setUpAnimation() {
         this.transIn = new TranslateTransition(Duration.millis(SLIDEINSPEED), this.dialog);
         transIn.setToY(0);
@@ -32,6 +33,7 @@ public class AnimationManagement {
         this.dialog.translateYProperty().setValue(-(dialog.getPrefHeight()));
     }
 
+    // Animates (slides in/out a pane)
     public void animate() {
         if (this.dialog.getTranslateY() != 0) {
             transIn.play();
@@ -41,6 +43,7 @@ public class AnimationManagement {
         }
     }
 
+    // Returns true if the pane is already expanded
     public boolean isExpanded() {
         return this.dialog.getTranslateY() != 0;
     }
