@@ -1,49 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<TabPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sagar.passwordmanager.controllers.MainController">
    <tabs>
       <Tab closable="false" text="Management">
          <content>
-            <StackPane prefHeight="600.0" prefWidth="1024.0">
+            <StackPane prefHeight="768.0" prefWidth="1024.0">
                <children>
-                  <SplitPane dividerPositions="0.7508361204013378" orientation="VERTICAL">
+                  <SplitPane dividerPositions="0.7508361204013378" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL">
                     <items>
-                      <AnchorPane minHeight="500.0">
+                      <AnchorPane minHeight="700.0">
                            <children>
-                              <SplitPane dividerPositions="0.3875968992248062" minWidth="-Infinity" prefHeight="500.0" prefWidth="1024.0">
+                              <SplitPane dividerPositions="0.39147286821705424" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <items>
                                   <AnchorPane minWidth="400.0">
                                        <children>
-                                          <Label layoutX="98.0" layoutY="251.0" text="PROVIDER ACCOUNTS HERE" />
-                                          <Button layoutX="374.0" layoutY="1.0" mnemonicParsing="false" text="-" />
-                                          <Button layoutX="347.0" layoutY="1.0" mnemonicParsing="false" text="+" />
-                                          <Accordion layoutX="50.0" layoutY="91.0" />
+                                          <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <ListView fx:id="accounts" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="SOMETIMES" />
+                                                <Button mnemonicParsing="false" text="+" />
+                                                <Button mnemonicParsing="false" text="-" />
+                                             </children>
+                                          </VBox>
                                        </children>
                                     </AnchorPane>
-                                  <AnchorPane minWidth="624.0">
+                                  <AnchorPane minWidth="678.0">
                                        <children>
-                                          <Label layoutX="255.0" layoutY="250.0" text="ACCOUNT DETAILS HERE" />
+                                          <Label layoutX="259.0" layoutY="341.0" text="ACCOUNT DETAILS HERE" />
                                        </children>
                                     </AnchorPane>
                                 </items>
                               </SplitPane>
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="100.0">
+                      <AnchorPane minHeight="68.0">
                            <children>
-                              <Button layoutX="998.0" layoutY="1.0" mnemonicParsing="false" text="-" />
-                              <Label alignment="TOP_CENTER" layoutX="446.0" layoutY="41.0" text="PROVIDERS GO HERE" textAlignment="CENTER" />
-                              <Button layoutX="971.0" layoutY="1.0" mnemonicParsing="false" text="+" />
+                              <HBox alignment="TOP_CENTER" fillHeight="false" layoutY="40.0" prefHeight="68.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ListView fx:id="providers" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#providerSelected" orientation="HORIZONTAL" HBox.hgrow="SOMETIMES" />
+                                    <Button mnemonicParsing="false" text="+" />
+                                    <Button mnemonicParsing="false" text="-" />
+                                 </children>
+                              </HBox>
+                              <Label alignment="TOP_CENTER" layoutX="446.0" layoutY="41.0" text="PROVIDERS GO HERE" textAlignment="CENTER" visible="false" />
                            </children>
                         </AnchorPane>
                     </items>
