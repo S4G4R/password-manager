@@ -1,5 +1,7 @@
 package com.sagar.passwordmanager;
 
+import com.sagar.passwordmanager.configuration.DatabaseConfiguration;
+import com.sagar.passwordmanager.configuration.ScreenConfiguration;
 import com.sagar.passwordmanager.controllers.SceneSwitcher;
 import com.sagar.passwordmanager.management.SceneManagement;
 
@@ -18,37 +20,16 @@ public class PasswordManager extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/splashscreen.fxml"));
+        new DatabaseConfiguration();
+
+        Parent root = FXMLLoader.load(getClass().getResource("/views/mainscreen.fxml"));
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
 
-        setProperties(stage, scene);
-        setUpScreenSwitching(stage);
-
-        setUpDatabase();
-
-        stage.show();
+        new ScreenConfiguration(stage, scene);
     }
 
-    private void setProperties(Stage stage, Scene scene) {
-        stage.setScene(scene);
-        stage.setTitle("Password Manager");
-        stage.resizableProperty().setValue(false);
-    }
-
-    private void setUpScreenSwitching(Stage stage) {
-        new SceneSwitcher(new SceneManagement(stage));
-    }
-
-    private void setUpDatabase() {
-        ServerRuntime cayenneRuntime = ServerRuntime.builder()
-                .addConfig("cayenne-project.xml")
-                .build();
-        ObjectContext context = cayenneRuntime.newContext();
-
-        context.commitChanges();
-    }
 
     public static void main(String[] args) {
         launch(args);
