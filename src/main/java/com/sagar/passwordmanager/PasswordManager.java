@@ -2,12 +2,6 @@ package com.sagar.passwordmanager;
 
 import com.sagar.passwordmanager.configuration.DatabaseConfiguration;
 import com.sagar.passwordmanager.configuration.ScreenConfiguration;
-import com.sagar.passwordmanager.controllers.SceneSwitcher;
-import com.sagar.passwordmanager.management.SceneManagement;
-
-import com.sagar.passwordmanager.persistent.User;
-import org.apache.cayenne.ObjectContext;
-import org.apache.cayenne.configuration.server.ServerRuntime;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
